@@ -1,0 +1,5 @@
+Do the following from the directory you clone mapreduceCountWords
+1. export HADOOP_CLASSPATH=target/classes/
+2. hadoop CountWordsDriver input/TaleOfTwoCities.txt output
+3. hadoop CountWordsDescendingDriver output/part-r-00000 output2
+
