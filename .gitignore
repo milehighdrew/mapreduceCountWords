@@ -3,6 +3,6 @@ target/
 log/
 
 #Intellij
-.idea.
+.idea/
 *.iml
 *.iws

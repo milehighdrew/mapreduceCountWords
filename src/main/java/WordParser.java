@@ -1,5 +1,3 @@
-import org.apache.hadoop.io.Text;
-
 import java.util.ArrayList;
 
 /**
@@ -10,21 +8,14 @@ public class WordParser {
 
 
     private String word;
-    private boolean validWord = true;
-
-
 
     public void parse(String record) {
 
         word = record.toLowerCase();
         for (String invalidChar: getExcludedCharacters()) {
-            word =  word.replaceAll(invalidChar,"");
+            word =  word.replaceAll(invalidChar," ");
         }
 
-
-        if (word.isEmpty()) {
-            validWord = false;
-        }
 
     }
 
@@ -51,7 +42,5 @@ public class WordParser {
         return word;
     }
 
-    public boolean isValidWord() {
-        return validWord;
-    }
+
 }

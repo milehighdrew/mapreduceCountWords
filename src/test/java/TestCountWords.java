@@ -1,15 +1,14 @@
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
-import org.junit.*;
+import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
+import org.junit.Test;
 
 import java.io.IOException;
-import java.lang.InterruptedException;
 import java.util.Arrays;
 
-public class TestMapTest {
+public class TestCountWords {
 
     @Test
     public void processesValidWord() throws IOException, InterruptedException {
@@ -61,21 +60,10 @@ public class TestMapTest {
 
         new MapDriver<LongWritable, Text, Text, IntWritable>()
                 .withMapper(new CountWordsMapper())
-                .withInput(new LongWritable(0),value)
+                .withInput(new LongWritable(0), value)
                 .withOutput(new Text("the"), new IntWritable(1))
                 .runTest();
     }
-
-    @Test
-    public void invalidWord() throws IOException, InterruptedException {
-        Text value = new Text("1987?");
-
-        new MapDriver<LongWritable, Text, Text, IntWritable>()
-                .withMapper(new CountWordsMapper())
-                .withInput(new LongWritable(0), value)
-                .runTest();
-    }
-
 
 
     @Test

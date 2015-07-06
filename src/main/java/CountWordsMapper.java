@@ -18,10 +18,11 @@ public class CountWordsMapper  extends Mapper<LongWritable, Text, Text, IntWrita
 
     @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        StringTokenizer itr = new StringTokenizer(value.toString());
+        parser.parse(value.toString());
+        String cleanLine = parser.getWord();
+        StringTokenizer itr = new StringTokenizer(cleanLine);
         while (itr.hasMoreTokens()) {
-            parser.parse(itr.nextToken());
-            word.set(parser.getWord());
+            word.set(itr.nextToken());
             context.write(word, one);
         }
     }
